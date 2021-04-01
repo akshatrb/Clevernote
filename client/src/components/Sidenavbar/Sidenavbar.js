@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Sidenavbar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faSearch, faPlus, faStar, faStickyNote, faTrash, faInfo, faBatteryEmpty } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faSearch, faPlus, faStar, faStickyNote, faTrash, faInfo } from '@fortawesome/free-solid-svg-icons';
 
 import { NavLink } from 'react-router-dom'
 // util functions like getRequest, postRequest will need URLS, hence importing them from apiEndpoints.js
@@ -16,8 +16,10 @@ const Sidenavbar = () => {
         //calling the util function postRequest
         const response = await postRequest(`${BASE_URL}${CREATE_NOTE}`); //passing in concatenation format
         console.log(response);
-        
-        
+        if (response.error){
+            setError(response.error);
+            return false;
+        }
     }
 
 

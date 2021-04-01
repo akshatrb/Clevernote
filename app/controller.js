@@ -46,7 +46,7 @@ exports.updateNoteById = async(req, res) =>{
             updatedAt : currentTime
         }
         await updateNote(req.params.id, query);
-        req.status(200).send(query);
+        res.status(200).send(query);
     }
 
     catch(ex){
@@ -57,7 +57,8 @@ exports.updateNoteById = async(req, res) =>{
 exports.deleteNote = async(req, res) =>{
     try{
         //We get the id from req.params.id
-        await this.deleteNote(req.params.id);
+        const id = req.params.id;
+        await deleteNote(id);
         res.status(200).send(id);
     }
 
