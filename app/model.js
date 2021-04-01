@@ -3,7 +3,7 @@ const { MONGO_DB, M_CONNECT} = require('./config/mongoDB');
 
 
 exports.createNote = async (payload) => {
-    const_db = (await M_CONNECT).db(process.env.MONGO_DB_NAME);
+    const db = (await M_CONNECT).db(process.env.MONGO_DB_NAME);
     let collection = await db.collection(process.env.MONGO_DB_NOTES_COLLECTION);
 
     let res = await collection.insertOne(payload);
@@ -13,7 +13,7 @@ exports.createNote = async (payload) => {
 }
 
 exports.fetchAllNotes = async (query) => {
-    const_db = (await M_CONNECT).db(process.env.MONGO_DB_NAME);
+    const db = (await M_CONNECT).db(process.env.MONGO_DB_NAME);
     let collection = await db.collection(process.env.MONGO_DB_NOTES_COLLECTION);
 
    let res = await collection.find(query).sort({createdAt: -1}).toArray(); //newly created notes at top hence -1
@@ -32,7 +32,7 @@ exports.updateNote = async (id, payload) => {
 }
 
 exports.deleteNote = async (id) => {
-    const_db = (await M_CONNECT).db(process.env.MONGO_DB_NAME);
+    const db = (await M_CONNECT).db(process.env.MONGO_DB_NAME);
     let collection = await db.collection(process.env.MONGO_DB_NOTES_COLLECTION);
 
     const response = await collection.deleteOne(
