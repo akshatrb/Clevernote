@@ -1,19 +1,46 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './NoteList.scss';
 import {
-    useRouteMatch
+    useRouteMatch,
+    useHistory
 } from "react-router-dom"; //for match.url
+import { BASE_URL, GET_ALL_NOTES, GET_TRASH_NOTES } from './../../utils/apiEndpoints';
+import { getRequest } from './../../utils/apiRequests';
+import { NotesContext } from './../../context/context';
 
 const NoteList =(props) => {
+    const [error, setError] = useState(null)
+    const notesContext = useContext(NotesContext);
     const {title} = props;
     const match = useRouteMatch();
+    const history = useHistory();
     useEffect(() => {
        // console.log(match.url); Done for testing; ignore
        getNotes()
     }, [match.url]) //we need to call this useEffect whenever the match.url is changing
     
     const getNotes = async () => {
-        
+        let endpoint = '';
+        if(match.url == '/all-notes'){
+            endpoint = GET_ALL_NOTES; 
+        } else if (match.url == '/trash'){
+            endpoint = GET_TRASH_NOTES; 
+        } else {
+            return; 
+        }
+
+        const response = await getRequest(`${BASE_URL}${endpoint}`)
+        if(response.error){
+            setError(response.error);
+            return false;
+        }
+        if(response.length > 0){
+            notesContext.notesDispatch({ type: 'getAllNotesSuccess', payload: response});
+            history.push({
+                pathname: `${match.url}/${response[0]._id}`, //concatenating match.url and first note._id
+                note: response[0]
+            })
+        }
     }
     
     return(
@@ -24,7 +51,7 @@ const NoteList =(props) => {
                 </div>
                 <div className="note-list__header-sub-head">
                     <div className="note-count">
-                        2 notes
+                        {notesContext.notesState.length} notes
                     </div>
                 </div>
             </div>
