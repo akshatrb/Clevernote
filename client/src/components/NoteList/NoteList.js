@@ -1,8 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './NoteList.scss';
+import {
+    useRouteMatch
+} from "react-router-dom"; //for match.url
 
 const NoteList =(props) => {
     const {title} = props;
+    const match = useRouteMatch();
+    useEffect(() => {
+       // console.log(match.url); Done for testing; ignore
+       getNotes()
+    }, [match.url]) //we need to call this useEffect whenever the match.url is changing
+    
+    const getNotes = async () => {
+        
+    }
+    
     return(
         <div className="note-list">
             <div className="note-list__header">

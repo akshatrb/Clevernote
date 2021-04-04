@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Sidenavbar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faSearch, faPlus, faStar, faStickyNote, faTrash, faInfo } from '@fortawesome/free-solid-svg-icons';
 
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 // util functions like getRequest, postRequest will need URLS, hence importing them from apiEndpoints.js
 import { BASE_URL, CREATE_NOTE } from './../../utils/apiEndpoints';
 import { postRequest } from './../../utils/apiRequests';
+import { NotesContext } from './../../context/context';
 
 
 const Sidenavbar = () => {
     const [error, setError] = useState(null);
+    const notesContext = useContext(NotesContext);
+    const history = useHistory();
 
     const handleCreateNote = async () => {
         //calling the util function postRequest
@@ -19,6 +22,13 @@ const Sidenavbar = () => {
         if (response.error){
             setError(response.error);
             return false;
+        }
+        if(response._id){
+            notesContext.notesDispatch({ type: 'createNoteSuccess', payload: response })
+            history.push({
+                pathname: `/all-notes/${response._id}`,
+                note: response // we will update our location.note from here -> useEffect in Note.js
+            })
         }
     }
 
