@@ -19,33 +19,29 @@ const initialState = [];
 function Clevernote() {
   const [notes, notesDispatch] = useReducer(NoteReducer, initialState); //react hook useReducer, passing NoteReducer and initial state into it.
   
-  return ( //wrapping everything with notesContext.provider inside router
-
-    <Router> 
+  //wrapping everything with notesContext.provider inside router
+  
+  return (
+    <Router>
       <NotesContext.Provider value={{notesState: notes, notesDispatch}}>
-    <div className="Clevernote">
-      <Sidenavbar />
-      
-      <Switch>
-
-        
-        <Route path="/all-notes">
-        <NoteList title="All Notes" />
-          <Route path="/all-notes/:id">
-          <Note />
-          </Route>
-        </Route>
-
-        <Route path="/trash">
-        <NoteList title="Trash"/>
-          <Route path="/trash/:id">
-          <Note /> 
-          
-          </Route>
-        </Route>
-      </Switch>
-    </div>
-    </NotesContext.Provider>
+        <div className="Clevernote">
+          <Sidenavbar />
+          <Switch>
+            <Route path="/all-notes">
+              <NoteList title="All Notes" />
+              <Route path="/all-notes/:id">
+                <Note />
+              </Route>
+            </Route>
+            <Route path="/trash">
+              <NoteList title="Trash" />
+              <Route path="/trash/:id">
+                <Note />
+              </Route>
+            </Route>
+          </Switch>
+        </div>
+      </NotesContext.Provider>
     </Router>
   );
 }
