@@ -9,7 +9,7 @@ import {
 import { putRequest } from './../../utils/apiRequests';
 import { BASE_URL, UPDATE_NOTE } from './../../utils/apiEndpoints';
 import { NotesContext } from './../../context/context';
-
+import { noteFormatDate } from './../../utils/helpers';
 
 const Note = () => {
     const location = useLocation();
@@ -72,7 +72,7 @@ const Note = () => {
         <div className="note">
             <div className="note__header">
                 <div className="note__header-date">
-                    Last edited on {updatedAt}
+                    Last edited on {noteFormatDate(updatedAt)}
                 </div>
                 <div className="note__header-action-btn">
                     <div className="action-btn">

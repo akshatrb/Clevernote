@@ -8,6 +8,8 @@ import {
 import { BASE_URL, GET_ALL_NOTES, GET_TRASH_NOTES } from './../../utils/apiEndpoints';
 import { getRequest } from './../../utils/apiRequests';
 import { NotesContext } from './../../context/context';
+import { listFormatDate } from './../../utils/helpers';
+
 
 const NoteList = (props) => {
     const [error, setError] = useState(null)
@@ -77,7 +79,7 @@ const NoteList = (props) => {
 
                             </div>
                             <div className="note-card__date">
-                                {note.updatedAt}
+                                {listFormatDate (note.updatedAt)}
                              </div>
                         </NavLink> //for click functionality we're using NavLink
                     )
