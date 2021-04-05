@@ -6,7 +6,7 @@ import Note from './components/Note/Note';
 import{
   BrowserRouter as Router,
   Switch,
-  Route,
+  Route
 } from "react-router-dom";
 import NoteReducer from './reducer/NoteReducer';
 import { NotesContext } from './context/context';
@@ -17,7 +17,7 @@ const initialState = [];
 //Wrapping our div with Router
 
 function Clevernote() {
-  const [notes, notesDispatch] = useReducer(NoteReducer, initialState) //react hook useReducer, passing NoteReducer and initial state into it.
+  const [notes, notesDispatch] = useReducer(NoteReducer, initialState); //react hook useReducer, passing NoteReducer and initial state into it.
   
   return ( //wrapping everything with notesContext.provider inside router
 

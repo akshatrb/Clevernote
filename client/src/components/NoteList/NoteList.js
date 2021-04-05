@@ -35,8 +35,8 @@ const NoteList = (props) => {
             setError(response.error);
             return false;
         }
+        notesContext.notesDispatch({ type: 'getAllNotesSuccess', payload: response });
         if (response.length > 0) {
-            notesContext.notesDispatch({ type: 'getAllNotesSuccess', payload: response });
             history.push({
                 pathname: `${match.url}/${response[0]._id}`, //concatenating match.url and first note._id
                 note: response[0]
