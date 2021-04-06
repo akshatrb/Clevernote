@@ -7,8 +7,8 @@ import {
     useParams,
     useHistory
  } from "react-router-dom";
-import { putRequest } from './../../utils/apiRequests';
-import { BASE_URL, UPDATE_NOTE } from './../../utils/apiEndpoints';
+import { deleteRequest, putRequest } from './../../utils/apiRequests';
+import { BASE_URL, DELETE_NOTE, UPDATE_NOTE } from './../../utils/apiEndpoints';
 import { NotesContext } from './../../context/context';
 import { noteFormatDate } from './../../utils/helpers';
 
@@ -107,6 +107,17 @@ const Note = () => {
         history.push(`/all-notes`) //since the note is deleted so it is no longer available in all-notes therefore we need to do history.push
     }
 
+    const handleDeleteNote = async () => {
+        const response = await deleteRequest(`${BASE_URL}${DELETE_NOTE}${params.id}`);
+        if(response.error){
+            setError(response.error);
+            return false;
+        }
+        notesContext.notesDispatch({ type: 'deleteNoteSuccess', id: response})
+        resetState();
+        history.push('/trash');
+    }
+
     return (
         <div className="note">
             <div className="note__header">
@@ -124,7 +135,7 @@ const Note = () => {
                             <FontAwesomeIcon icon={faBackward} onClick={handleUnArchiveNote} />
                         </div>
                         <div className="action-btn">
-                            <FontAwesomeIcon icon={faTrash} />
+                            <FontAwesomeIcon icon={faTrash} onClick={handleDeleteNote}/>
                         </div>
                         </>
                     )}
