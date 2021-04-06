@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArchive } from '@fortawesome/free-solid-svg-icons';
 import { 
     useLocation,
-    useParams
+    useParams,
+    useHistory
  } from "react-router-dom";
 import { putRequest } from './../../utils/apiRequests';
 import { BASE_URL, UPDATE_NOTE } from './../../utils/apiEndpoints';
@@ -20,7 +21,8 @@ const Note = () => {
     const [updatedAt, setUpdatedAt] = useState('');
     const [isArchive, setIsArchive] = useState(0);
     const [error, setError] = useState(null);
-    
+    const history = useHistory();
+
     useEffect(() => {
         if (location.note) {
             setTitle(location.note.title)
@@ -68,6 +70,29 @@ const Note = () => {
         notesContext.notesDispatch({ type: 'updateNoteSuccess', payload: response, id: params.id })
     }
 
+    const resetState =() => {
+        setTitle('');
+        setDesc('');
+        setUpdatedAt('');
+        setIsArchive(0);
+        setError(null);
+    }
+
+    const handleArchiveNote = async () => {
+        let query = {
+            archive: 1
+        };
+        const response = await putRequest(`${BASE_URL}${UPDATE_NOTE}${params.id}`, query);
+        if(response.error){ //error hnadling
+            setError(response.error);
+            return false;
+        }
+        notesContext.notesDispatch({type: 'archiveNoteSuccess', id: params.id})
+            //if update is succesfull, we will dispatch archiveNoteSuccess with the note id
+        resetState(); //since the note is deleted, we need to reset all the states
+        history.push(`/all-notes`) //since the note is deleted so it is no longer available in all-notes therefore we need to do history.push
+    }
+
     return (
         <div className="note">
             <div className="note__header">
@@ -75,7 +100,7 @@ const Note = () => {
                     Last edited on {noteFormatDate(updatedAt)}
                 </div>
                 <div className="note__header-action-btn">
-                    <div className="action-btn">
+                    <div className="action-btn" onClick={handleArchiveNote}>
                         <FontAwesomeIcon icon={faArchive} />
                     </div>
                 </div>
