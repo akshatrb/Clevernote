@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Note.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArchive } from '@fortawesome/free-solid-svg-icons';
+import { faArchive, faBackward, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { 
     useLocation,
     useParams,
@@ -78,6 +78,20 @@ const Note = () => {
         setError(null);
     }
 
+    const handleUnArchiveNote = async () => {
+        let query ={
+            archive: 0
+        }
+        const response = await putRequest(`${BASE_URL}${UPDATE_NOTE}${params.id}`, query);
+        if(response.error) {
+            setError(response.error);
+            return false;
+        }
+        notesContext.notesDispatch({type: 'archiveNoteSuccess', id: params.id})
+        resetState();
+        history.push(`/trash`)
+    }
+
     const handleArchiveNote = async () => {
         let query = {
             archive: 1
@@ -100,9 +114,22 @@ const Note = () => {
                     Last edited on {noteFormatDate(updatedAt)}
                 </div>
                 <div className="note__header-action-btn">
-                    <div className="action-btn" onClick={handleArchiveNote}>
-                        <FontAwesomeIcon icon={faArchive} />
-                    </div>
+                    {!isArchive ? (
+                        <div className="action-btn" onClick={handleArchiveNote}>
+                            <FontAwesomeIcon icon={faArchive} />
+                        </div>
+                    ) : (
+                        <>
+                        <div className="action-btn">
+                            <FontAwesomeIcon icon={faBackward} onClick={handleUnArchiveNote} />
+                        </div>
+                        <div className="action-btn">
+                            <FontAwesomeIcon icon={faTrash} />
+                        </div>
+                        </>
+                    )}
+                    
+                    
                 </div>
             </div>
 
