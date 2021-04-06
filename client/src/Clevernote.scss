@@ -13,7 +13,7 @@
 //correcting css for trash's misaligned "no data found"
 .empty-state{
     opacity: 0.3;
-    height: 50px; //using 10-20% would make "no data found" float wrt console
+    height: 50px; //using (10-20)% would make "no data found" float wrt console
     display: flex;
     align-items: center;
     justify-content: center;
