@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import './Sidenavbar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faSearch, faPlus, faStar, faStickyNote, faTrash, faInfo } from '@fortawesome/free-solid-svg-icons';
+import { faCannabis, faSearch, faPlus, faStar, faStickyNote, faTrash, faInfo } from '@fortawesome/free-solid-svg-icons';
 
 import { NavLink, useHistory } from 'react-router-dom'
 // util functions like getRequest, postRequest will need URLS, hence importing them from apiEndpoints.js
@@ -38,11 +38,11 @@ const Sidenavbar = () => {
             <div className="sidenavbar-top">
                 <div className="sidenavbar-top__profile">
                     <div className="profile-icon">
-                        A
+                        C
                     </div>
                     <div className="profile-title">
-                        CleverNote
-                        <FontAwesomeIcon className="icon" icon={faAngleDown} />
+                        Clevernote
+                        <FontAwesomeIcon className="icon" icon={faCannabis} />
                     </div>
                 </div>
                 <div className="sidenavbar-top__search">
