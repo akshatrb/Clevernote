@@ -61,7 +61,7 @@ const NoteList = (props) => {
 
             <div className="note-list__body">
                 {
-                    notesContext.notesState.length > 0 ? notesContext.notesState.map((note) => (
+                    (notesContext.notesState.length > 0) ? notesContext.notesState.map((note) => (
                         <NavLink key={note._id}className="note-card" to={
                             {
                                 pathname: `${match.url}/${note._id}`,

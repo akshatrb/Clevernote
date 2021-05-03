@@ -33,8 +33,8 @@ const Note = () => {
     }, [location.note]) // we will call this useEffect wherever our location.note is changing
 
     useEffect(() => {
-        if (notesContext.notesState.length > 0) {
-            const [selectednote] = notesContext.notesState.filter((e) => e._id === params.id);
+        if ( notesContext.notesState.length > 0) {
+            const [selectednote] =  notesContext.notesState.filter((e) => e._id === params.id);
             if (selectednote) {
                 setTitle(selectednote.title)
                 setDesc(selectednote.desc)

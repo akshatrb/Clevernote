@@ -1,4 +1,5 @@
 {
+  "homepage": "http://localhost:2000",
   "name": "client",
   "version": "0.1.0",
   "private": true,

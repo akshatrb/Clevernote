@@ -5,7 +5,11 @@ const bodyParser = require('body-parser');
 const cors = require('cors')
 const port = process.env.port;
 
-app.use(cors());
+app.use([cors(), 
+      express.static(__dirname + '/client/build'),
+ ]);
+
+
 
 // support parsing of application/json type post data
 app.use(bodyParser.json());
@@ -14,7 +18,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 require(`${__dirname}/app/routes`)(app);
-
+require('./app/routes')(app); //pasted afterwards
 app.listen(port, () => {
     console.log(`Example app listening at ${port}`)
 })
+
