@@ -53,5 +53,5 @@ and the DB url for fetching/storing the notes.
 
 You can reach out at hi@arb.codes to understand how to setup the app locally.
 
-Feel free to ask of any doubts and consider dropping a ⭐ if the repo was of help!
+Feel free to ask of any doubts and consider dropping a ⭐ if the repo/application looks dope!
   
