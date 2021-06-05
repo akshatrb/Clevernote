@@ -30,16 +30,15 @@ Application is live on AWS EC2 instance and cloud storage using MongoDB Atlas.
 ## Deployment
 
  
-Set up an AWS EC2 web server and configured services through Virtual Hosting. 
+- Set up an AWS EC2 web server and configured services through Virtual Hosting. 
 
-Configured DNS and mapped it with the web server through Elastic IP. 
+- Configured DNS and mapped it with the web server through Elastic IP. 
 
-Clevernote is serving as the primary application on the server.
+- [Clevernote](clevernote.arb.codes) is serving as the primary application on the server.
 
-Uploaded it over github and pulled the master branch to my server. 
+- Uploaded it over github and pulled the master branch to my server. 
 
-Tech involved include AWS EC2 Ubuntu image, Elastic IP load balancer, Virtual Hosting through ApacheV2, Confd
-Configuration, Version Control and DNS Config.
+- Tech involved include AWS EC2 Ubuntu image, Elastic IP load balancer, Virtual Hosting through ApacheV2, Confd Configuration, Version Control and DNS Config.
 ## Environment Variables
 
 Just mention the port on which the application is supposed to run
