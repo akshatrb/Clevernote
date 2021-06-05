@@ -38,7 +38,13 @@ Application is live on AWS EC2 instance and cloud storage using MongoDB Atlas.
 
 - Uploaded it over github and pulled the master branch to my server. 
 
-- Tech involved include AWS EC2 Ubuntu image, Elastic IP load balancer, Virtual Hosting through ApacheV2, Confd Configuration, Version Control and DNS Config.
+### Tech involved include 
+1. AWS EC2 Ubuntu image 
+2. Elastic IP load balancer 
+3. Virtual Hosting through ApacheV2 
+4. Confd Configuration 
+5. Version Control 
+6. DNS Config
 ## Environment Variables
 
 Just mention the port on which the application is supposed to run
