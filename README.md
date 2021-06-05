@@ -38,7 +38,7 @@ Application is live on AWS EC2 instance and cloud storage using MongoDB Atlas.
 
 - Uploaded it over github and pulled the master branch to my server. 
 
-### Tech involved include 
+### Tech involved in Deployment 
 1. AWS EC2 Ubuntu image 
 2. Elastic IP load balancer 
 3. Virtual Hosting through ApacheV2 
