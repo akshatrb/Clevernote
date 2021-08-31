@@ -34,7 +34,7 @@ Application is live on AWS EC2 instance and cloud storage using MongoDB Atlas.
 
 - Configured DNS and mapped it with the web server through Elastic IP. 
 
-- [Clevernote](http://clevernote.arb.codes) is serving as the primary application on the server.
+- [Clevernote](http://clevernote.arb.codes) is being served as the primary application by the server.
 
 - Uploaded it over github and pulled the master branch to my server. 
 
